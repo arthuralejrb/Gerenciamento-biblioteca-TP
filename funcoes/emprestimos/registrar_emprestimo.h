@@ -20,7 +20,12 @@ void registrar_emprestimo(emprestimo *emprestimos, usuario *usuarios, livro *liv
         */
 
         //define os dados do emprestimo
+        if(emprestimo_atual == 0) {
+        emprestimos[emprestimo_atual].idEmprestimo = 1;
+        }else{
         emprestimos[emprestimo_atual].idEmprestimo = emprestimos[emprestimo_atual - 1].idEmprestimo + 1; 
+        }
+
         emprestimos[emprestimo_atual].idLivro = id_livro;
         emprestimos[emprestimo_atual].idUsuario = id_usuario;
         

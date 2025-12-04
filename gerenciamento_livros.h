@@ -86,7 +86,7 @@ int gerenciamento_livros(livro *livros, int total_livros) {
 
                 //decrementa o total de livros armazenados e diminui o espaço alocado no vetor de livros
                 total_livros--;
-                livros = (livro *)realloc(livros, (total_livros)+1*sizeof(livro));
+                livros = (livro *)realloc(livros, (total_livros)*sizeof(livro));
                 
             break;
 

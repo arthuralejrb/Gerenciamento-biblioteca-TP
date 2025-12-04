@@ -33,7 +33,7 @@ int gerenciamento_usuarios(usuario *usuarios, int total_usuarios) {
                 
                 //incrementa o total de usuarios e aumenta o espaço alocado para o vetor de usuarios
                 total_usuarios++; 
-                usuarios = (usuario *)realloc(usuarios, (total_usuarios + 1 )*sizeof(usuario));
+                usuarios = (usuario *)realloc(usuarios, (total_usuarios + 1)*sizeof(usuario));
 
             break;
 

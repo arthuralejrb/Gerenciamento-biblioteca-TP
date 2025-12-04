@@ -58,7 +58,7 @@ int gerenciamento_emprestimos(emprestimo *emprestimos, usuario *usuarios,
 
                     //incrementa a contadora de emprestimos e aumenta o espaço alocado pelo vetor de emprestimos
                     total_emprestimos++;
-                    emprestimos = (emprestimo *)realloc(emprestimos, (total_emprestimos + 1) *sizeof(emprestimo));
+                    emprestimos = (emprestimo *)realloc(emprestimos, (total_emprestimos = 1) *sizeof(emprestimo));
 
                 }
 

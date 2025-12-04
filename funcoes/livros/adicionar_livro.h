@@ -29,9 +29,18 @@ void adicionar_livro(livro *livros, int total_livros) {
 
     //define o estado do novo livro como disponível
     livros[total_livros].disponivel = true;
-    
+
     //define o id do i-ésimo livro como o id do livro anterior + 1
-    livros[total_livros].idLivro = livros[total_livros - 1].idLivro + 1;
+    if(total_livros == 0) {
+    
+        livros[total_livros].idLivro = 1;
+    
+    }else{
+
+        livros[total_livros].idLivro = livros[total_livros - 1].idLivro + 1;
+
+    }
+        printf("ID do novo livro é: %d\n",livros[total_livros].idLivro);
 
 }
 

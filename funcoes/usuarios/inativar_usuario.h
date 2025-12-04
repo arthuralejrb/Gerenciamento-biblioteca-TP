@@ -17,13 +17,14 @@ void inativar_usuario(usuario *usuarios, int total_usuarios, int id){
     
     int usuario;
     
-    for(int i = 0; i < total_usuarios && usuarios[i].idUsuario != id; i++){
-        
+    for(int i = 0; i < total_usuarios ; i++){
+        if(usuarios[i].idUsuario == id){
         usuario = i;
-
+        usuarios[usuario].ativo = 0;
+        return;
+        }
     }
-
-    usuarios[usuario].ativo = 0;
+     printf("Usuário inativado com sucesso! \n");
 
 }
 

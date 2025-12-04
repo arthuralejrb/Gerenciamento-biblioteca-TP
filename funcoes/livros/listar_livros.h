@@ -19,8 +19,13 @@ void listar_livros(livro *livros, int total_livros) {
 
     for(int i = 0; i < total_livros; i++) {
         //printa os dados de cada livro achado
-        printf("Livro: %s | ID: %d | Disponibilidade: %d\n", livros[i].titulo, livros[i].idLivro, livros[i].disponivel);
-        
+        printf("Livro: %s | ID: %d | ", livros[i].titulo, livros[i].idLivro);
+        if(livros[i].disponivel){
+            printf("Disponível\n");
+        }
+        else{
+            printf("Indisponível\n");
+        }
     }
 
     printf("\n");

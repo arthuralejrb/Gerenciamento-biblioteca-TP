@@ -17,25 +17,21 @@ void remover_livro(livro *livros, int posicao, int total_livros) {
     */
 
    //Verifica se o vetor é nulo
-    if(livros == NULL) {
+    if(livros == NULL || total_livros <= 0) {
         
-        printf("Erro: vetor é NULL! \n");
+        printf("Erro: vetor vazio\n");
     
     }
+    else{
+        if(posicao != total_livros - 1){
+            //varre o vetor livro e move os livros para trás
+            for(int i = posicao; i < total_livros - 1; i++) {
+            livros[i] = livros[i + 1];
+        }
+     }
+    }
+    
 
-    //O vetor está vazio
-    if(total_livros <= 0 ) {
-        
-        printf("Erro: não há livros na biblioteca! \n");
-
-    }
-    
-    //varre o vetor livro e move os livros para trás
-    for(int i = posicao; i <= total_livros; i++) {
-    
-        livros[i] = livros[i + 1];
-    
-    }
 
     printf("Livro removido com sucesso! \n");
 

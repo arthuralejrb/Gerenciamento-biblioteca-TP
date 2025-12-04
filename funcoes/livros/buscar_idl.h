@@ -15,23 +15,23 @@ int buscar_idl (livro *livros, int id, int total_livros) {
     */
 
 
-    int i = 0;
+    int v = 0;
 
-    while(livros[i].idLivro != id) {
-        i++;
-
-        if(i > total_livros) {
-            //já acessou todos os livros do vetor e não encontrou
-
-            printf("Livro não encontrado!\n");
-            return 0;
+    for(int i = 0; i < total_livros; i++) {
+        
+        printf("%s : %d\n", livros[total_livros].autor, id);
+        if(livros[i].idLivro == id) {
+            //retorna a posição do livro desejado
+            return i;
+            v = 1;
 
         }
 
     }
 
-    //retorna a posição do livro desejado
-    return i;
+    printf("Livro não encontrado!\n");
+    return 0;
+
 
 }
 
