@@ -6,7 +6,7 @@
 
 
 void menu_principal() {
-    
+    printf("\n");
     printf("====MENU DE PRINCIPAL====\n");
     printf("1. Gerenciamento de livros\n");
     printf("2. Gerenciamento de usuários\n");
@@ -17,7 +17,8 @@ void menu_principal() {
 }
 
 void menu_de_livros(){
-
+ 
+    printf("\n");
     printf("====MENU DE GERENCIAMENTO DE LIVROS====\n");
     printf("1. Adicionar livro\n");
     printf("2. Buscar livro\n");
@@ -30,6 +31,7 @@ void menu_de_livros(){
 
 void menu_de_usuarios(){
 
+    printf("\n");
     printf("====MENU DE GERENCIAMENTO DE USUARIOS====\n");
     printf("1. Cadastrar usuário\n");
     printf("2. Buscar usuário\n");
@@ -41,6 +43,7 @@ void menu_de_usuarios(){
 
 void menu_de_emprestimos(){
 
+    printf("\n");
     printf("====MENU DE GERENCIAMENTO DE EMPRESTIMOS====\n");
     printf("1. Registrar empréstimo\n");
     printf("2. Registrar devolução\n");
@@ -53,6 +56,7 @@ void menu_de_emprestimos(){
 
 void menu_de_relatorios(){
 
+    printf("\n");
     printf("====MENU DE GERENCIAMENTO DE RELATORIOS====\n");
     printf("1. Quantidade de livros cadastrados\n");
     printf("2. Quantidade de livros disponíveis e emprestados\n");
@@ -64,6 +68,7 @@ void menu_de_relatorios(){
 
 void menu_atualizacao() {
 
+    printf("\n");
     printf("====INFORME O DADO A SER ATUALIZADO===\n");
     printf("1. Atualizar título\n");
     printf("2. Atualizar autor\n");

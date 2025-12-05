@@ -3,8 +3,7 @@
 
 
 //importa a struct emprestimo
-#include "../../registros/emprestimo.h"
-#include "../../registros/livro.h"
+#include "../../registros/biblioteca.h"
 
 
 //importa função para encontrar o livro
@@ -14,23 +13,24 @@
 #include <stdio.h>
 
 
-int registrar_devolucao(emprestimo *emprestimos, livro *livros, int total_emprestimos, int id_emprestimo, int total_livros) {
+int registrar_devolucao(tBiblioteca *biblioteca, int id_emprestimo) {
     /*
     Registra a devolução de um emprestimo
     */
 
-    for(int i = 0; i < total_emprestimos; i++){
-        if(emprestimos[i].idEmprestimo == id_emprestimo){
+    for(int i = 0; i < biblioteca->total_emprestimos; i++){
+        if(biblioteca->emprestimos[i].idEmprestimo == id_emprestimo){
             
             //define o estado do emprestimo como inativo
-            emprestimos[i].ativo = 0;
+            biblioteca->emprestimos[i].ativo = 0;
             printf("Livro retornado com sucesso! \n");
 
             //definir o estado do livro como disponível:
-            int posicao_livro = buscar_idl(livros, emprestimos[i].idLivro, total_livros);
-            livros[posicao_livro].disponivel = 1;
+            int posicao_livro = buscar_idl(biblioteca, biblioteca->emprestimos[i].idLivro);
+            biblioteca->livros[posicao_livro].disponivel = 1;
             
             return 0;
+            
         }
 
     }

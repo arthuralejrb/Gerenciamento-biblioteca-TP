@@ -3,31 +3,31 @@
 
 
 //importa as structs emprestimo e registro
-#include "../../registros/emprestimo.h"
-#include "../../registros/livro.h"
+#include "../../registros/biblioteca.h"
 
 
-int buscar_ide(emprestimo *emprestimos, livro *livros, int id_emprestimo, int total_emprestimos, int total_livros){
+int buscar_ide(tBiblioteca *biblioteca, int id_emprestimo){
    
    /*
       Busca um livro e retorna se ele está disponível ou não
    */
 
 
-   int i,j;
+   int i, j;
    
    //For de varredura para encontrar um emprestimo
-   for(i = 0; i < total_emprestimos && emprestimos[i].idEmprestimo != id_emprestimo; i++);
+   for(i = 0; i < biblioteca->total_emprestimos && biblioteca->emprestimos[i].idEmprestimo != id_emprestimo; i++);
    
    //Armazena o ID do livro emprestado
-   int id_livro = emprestimos[i].idLivro;
+   int id_livro = biblioteca->emprestimos[i].idLivro;
    
    //For de varredura para encontrar um livro
-   for(j = 0; j < total_livros && livros[i].idLivro != id_livro; j++);
+   for(j = 0; j < biblioteca->total_livros && biblioteca->livros[i].idLivro != id_livro; j++);
    
    //retorna o estado do livro
-   return livros[j].disponivel;
+   return biblioteca->livros[j].disponivel;
    
 }
+
 
 #endif

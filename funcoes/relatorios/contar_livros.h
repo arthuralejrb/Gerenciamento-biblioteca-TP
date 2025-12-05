@@ -3,13 +3,13 @@
 
 
 //importa a struct livro
-#include "../../registros/livro.h"
+#include "../../registros/biblioteca.h"
 
 
 #include <stdio.h> 
 
 
-void contar_livros(livro *livros, int total_livros){
+void contar_livros(tBiblioteca *biblioteca){
 
     /*
     Conta quantos livros estão disponíveis e quantos não estão
@@ -18,15 +18,15 @@ void contar_livros(livro *livros, int total_livros){
     int disponiveis = 0;
     int indisponiveis = 0;
 
-    for(int i = 0; i < total_livros; i++) {
+    for(int i = 0; i < biblioteca->total_livros; i++) {
 
-        if(livros[i].disponivel == 0){
+        if(biblioteca->livros[i].disponivel == 0){
 
-            disponiveis++;
+            indisponiveis++;
         
         }else {
         
-            indisponiveis++;
+            disponiveis++;
         
         }
     }

@@ -6,7 +6,7 @@
 
 
 //importa a struct livro
-#include "../registros/livro.h"
+#include "../registros/biblioteca.h"
 
 int devolver_livro(livro *livros, int total_livros, char titulo[]) {
 

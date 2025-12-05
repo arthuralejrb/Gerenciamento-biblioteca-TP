@@ -5,11 +5,11 @@
 #include<stdio.h>
 
 
-//inclui a struct usuario
-#include "../../registros/usuario.h"
+//inclui as structs para o gerenciamento da biblitoeca
+#include "../../registros/biblioteca.h"
 
 
-void cadastrar_usuario(usuario *u, int total_usuario){
+void cadastrar_usuario(tBiblioteca *biblioteca){
     
     /*
     Adiciona um usuário ao vetor de usuarios
@@ -17,29 +17,29 @@ void cadastrar_usuario(usuario *u, int total_usuario){
     */
    //Lê o nome do usuario
    printf("Informe o nome do usuario: \n");
-   scanf("%s", u[total_usuario].nome);
+   scanf("%s", biblioteca->usuarios[biblioteca->total_usuarios].nome);
 
     //Lê o email do usuário
     printf("Digite o email do usuario: \n");
-    scanf("%s", u[total_usuario].email);
+    scanf("%s", biblioteca->usuarios[biblioteca->total_usuarios].email);
 
     
     //define o estado de ativo do usuário como verdadeiro
-    u[total_usuario].ativo = true;
+    biblioteca->usuarios[biblioteca->total_usuarios].ativo = 1;
 
     //define o id do i-ésimo livro como o id do livro anterior + 1  
 
-    if(total_usuario == 0) {
+    if(biblioteca->total_usuarios == 0) {
         
-        u[total_usuario].idUsuario = 1;
+        biblioteca->usuarios[biblioteca->total_usuarios].idUsuario = 1;
         
     }else{
         
-        u[total_usuario].idUsuario = u[total_usuario - 1].idUsuario + 1;
+        biblioteca->usuarios[biblioteca->total_usuarios].idUsuario = biblioteca->usuarios[biblioteca->total_usuarios - 1].idUsuario + 1;
         
     }
-    printf("ID do novo usuario é: %d\n",u[total_usuario].idUsuario);
 
+    printf("ID do novo usuario é: %d\n",biblioteca->usuarios[biblioteca->total_usuarios].idUsuario);
 
 }
 

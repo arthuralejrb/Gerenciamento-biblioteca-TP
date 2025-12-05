@@ -6,10 +6,10 @@
 
 
 //importa a struct livro
-#include "../../registros/livro.h"
+#include "../../registros/biblioteca.h"
 
 
-void listar_livros(livro *livros, int total_livros) {
+void listar_livros(tBiblioteca *biblioteca) {
     /*
         Lista todos os livros armazenados
     */
@@ -17,10 +17,10 @@ void listar_livros(livro *livros, int total_livros) {
     printf("\n");
     printf("\n");
 
-    for(int i = 0; i < total_livros; i++) {
+    for(int i = 0; i < biblioteca->total_livros; i++) {
         //printa os dados de cada livro achado
-        printf("Livro: %s | ID: %d | ", livros[i].titulo, livros[i].idLivro);
-        if(livros[i].disponivel){
+        printf("Livro: %s | ID: %d | ", biblioteca->livros[i].titulo, biblioteca->livros[i].idLivro);
+        if(biblioteca->livros[i].disponivel){
             printf("Disponível\n");
         }
         else{

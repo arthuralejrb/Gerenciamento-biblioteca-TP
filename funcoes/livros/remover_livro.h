@@ -5,10 +5,10 @@
 #include <string.h>
 
 //importa a struct livro
-#include "../../registros/livro.h"
+#include "../../registros/biblioteca.h"
 
 
-void remover_livro(livro *livros, int posicao, int total_livros) {
+void remover_livro(tBiblioteca *biblioteca, int posicao) {
 
     /*
     Remove um livro do vetor de livros
@@ -17,21 +17,19 @@ void remover_livro(livro *livros, int posicao, int total_livros) {
     */
 
    //Verifica se o vetor é nulo
-    if(livros == NULL || total_livros <= 0) {
+    if(biblioteca->livros == NULL || biblioteca->total_livros <= 0) {
         
         printf("Erro: vetor vazio\n");
     
     }
     else{
-        if(posicao != total_livros - 1){
+        if(posicao != biblioteca->total_livros - 1){
             //varre o vetor livro e move os livros para trás
-            for(int i = posicao; i < total_livros - 1; i++) {
-            livros[i] = livros[i + 1];
+            for(int i = posicao; i < biblioteca->total_livros - 1; i++) {
+            biblioteca->livros[i] = biblioteca->livros[i + 1];
         }
      }
     }
-    
-
 
     printf("Livro removido com sucesso! \n");
 

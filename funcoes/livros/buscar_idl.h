@@ -6,10 +6,10 @@
 
 
 //importa a struct livro
-#include "../../registros/livro.h"
+#include "../../registros/biblioteca.h"
 
 
-int buscar_idl (livro *livros, int id, int total_livros) {
+int buscar_idl (tBiblioteca *biblioteca, int id) {
     /*
     Varre o vetor de livros em busca de um ID igual
     */
@@ -17,11 +17,11 @@ int buscar_idl (livro *livros, int id, int total_livros) {
 
     int v = 0;
 
-    for(int i = 0; i < total_livros; i++) {
+    for(int i = 0; i < biblioteca->total_livros; i++) {
         
-        printf("%s : %d\n", livros[total_livros].autor, id);
-        if(livros[i].idLivro == id) {
+        if(biblioteca->livros[i].idLivro == id) {
             //retorna a posição do livro desejado
+            
             return i;
             v = 1;
 
@@ -31,7 +31,6 @@ int buscar_idl (livro *livros, int id, int total_livros) {
 
     printf("Livro não encontrado!\n");
     return 0;
-
 
 }
 

@@ -1,7 +1,5 @@
 //importa todas structs para o gerenciamento de relatorios
-#include "./registros/emprestimo.h"
-#include "./registros/usuario.h"
-#include "./registros/livro.h"
+#include "./registros/biblioteca.h"
 
 
 //importa todas as funções para o gerenciamento de relatorios
@@ -14,46 +12,49 @@
 #include <stdlib.h>
 
 
-int gerenciamento_relatorios(emprestimo *emprestimos, usuario *usuarios, 
-    livro *livros, int total_emprestimos, int total_livros, int total_usuarios) {
+int gerenciamento_relatorios(tBiblioteca *biblioteca) {
 
-    int opcao;
+    char opcao;
 
-    while(scanf("%d", &opcao)) {
+    while(scanf(" %c", &opcao)) {
 
         switch(opcao) {
 
-            case 1:
+            case '1':
                 /*Quantidade total de livros cadastrados*/
+                limpar_tela();
                
                 //printa o total de livros existentes
-                printf("Total de livros cadastrados: %d \n", total_livros);
+                printf("Total de livros cadastrados: %d \n", biblioteca->total_livros);
             
             break;
             
-            case 2:
+            case '2':
                 /*Quantidade de livros disponíveis e emprestados*/
+                limpar_tela();
 
                 //printa a quantia de livros disponíveis e indisponíveis
-                contar_livros(livros, total_livros);
+                contar_livros(biblioteca);
 
             break;
             
-            case 3:
+            case '3':
                 /*Usuário com mais emprestimos ativos*/
+                limpar_tela();
 
                 //printa o nome do usuário com mais emprestimos ativos
-                emprestimos_usuario(emprestimos, total_emprestimos, total_usuarios);
+                emprestimos_usuario(biblioteca);
             break;
             
-            case 4:
+            case '4':
                 /*Livro mais emprestado*/
+                limpar_tela();
 
-                //AAAAAAAAAAAA
+                emprestimos_livro(biblioteca);
 
             break;
             
-            case 0:
+            case '0':
                 /*Retorna ao menu principal*/
 
                 //limpa o terminal antes de retornar ao menu principal
@@ -61,6 +62,12 @@ int gerenciamento_relatorios(emprestimo *emprestimos, usuario *usuarios,
 
                 return 1;
 
+            break;
+
+            default:
+
+                printf("Opção inexistente!\n");
+            
             break;
 
         }

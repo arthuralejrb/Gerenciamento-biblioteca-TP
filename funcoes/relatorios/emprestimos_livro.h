@@ -3,20 +3,20 @@
 
 
 //importa a struct emprestimo
-#include "../../registros/emprestimo.h"
+#include "../../registros/biblioteca.h"
 
 
 #include <stdlib.h>
 #include <stdio.h>
 
 
-int emprestimos_livro(emprestimo *emprestimos, int total_emprestimos, int total_usuarios) {
+int emprestimos_livro(tBiblioteca *biblioteca) {
 
     /*
     Encontra o livro com maior número de emprestios 
     */
 
-    if(total_emprestimos == 0) {
+    if(biblioteca->total_emprestimos == 0) {
 
         printf("Não há emprestimos no sistema! \n");
         return 0;
@@ -25,12 +25,12 @@ int emprestimos_livro(emprestimo *emprestimos, int total_emprestimos, int total_
 
     int valor_maximo = 0;
 
-    for(int i = 0; i < total_emprestimos; i++) {
+    for(int i = 0; i < biblioteca->total_emprestimos; i++) {
 
-        if(emprestimos[i].idLivro > valor_maximo){
+        if(biblioteca->emprestimos[i].idLivro > valor_maximo){
             
             //encontra o maior ID de usuário com emprestimo ativo
-            valor_maximo = emprestimos[i].idLivro;
+            valor_maximo = biblioteca->emprestimos[i].idLivro;
         
         }
 
@@ -40,10 +40,10 @@ int emprestimos_livro(emprestimo *emprestimos, int total_emprestimos, int total_
     int *frequencia;
     frequencia = (int *)calloc(valor_maximo + 1 , sizeof(int));
 
-    for(int i = 0; i < total_emprestimos; i++){
+    for(int i = 0; i < biblioteca->total_emprestimos; i++){
 
         //aumenta a contagem de frequencia de emprestimos de um usuario
-        frequencia[emprestimos[i].idLivro]++;
+        frequencia[biblioteca->emprestimos[i].idLivro]++;
 
     }
 

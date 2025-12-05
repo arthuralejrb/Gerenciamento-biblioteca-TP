@@ -3,13 +3,13 @@
 
 
 //importa a struct emprestimo
-#include "../../registros/emprestimo.h"
+#include "../../registros/biblioteca.h"
 
 
 #include <stdio.h>
 
 
-void listar_historico(emprestimo *emprestimos, int total_emprestimos) {
+void listar_historico(tBiblioteca *biblioteca) {
     
     /*
     Lista todos os emprestimos já realizados
@@ -18,11 +18,11 @@ void listar_historico(emprestimo *emprestimos, int total_emprestimos) {
 
     printf("====Histórico de emprestimos ====\n");
 
-    for(int i = 0; i < total_emprestimos; i++) {
+    for(int i = 0; i < biblioteca->total_emprestimos; i++) {
 
         //imrpime os dados do emprestimo
         printf("ID do emprestimo: %d | ID do livro: %d | ID do usuario: %d \n",
-        emprestimos[i].idEmprestimo, emprestimos[i].idLivro, emprestimos[i].idUsuario);
+        biblioteca->emprestimos[i].idEmprestimo, biblioteca->emprestimos[i].idLivro, biblioteca->emprestimos[i].idUsuario);
 
     }
 

@@ -3,13 +3,13 @@
 
 
 //importa a struct emprestimo
-#include "../../registros/emprestimo.h"
+#include "../../registros/biblioteca.h"
 
 
 #include <stdio.h>
 
 
-void listar_emprestimos(emprestimo *emprestimos, int total_emprestimos) {
+void listar_emprestimos(tBiblioteca *biblioteca) {
     
     /*
     Lista todos os emprestimos ativos
@@ -17,13 +17,13 @@ void listar_emprestimos(emprestimo *emprestimos, int total_emprestimos) {
 
     printf("====Emprestimos ativos====\n");
 
-    for(int i = 0; i < total_emprestimos; i++) {
+    for(int i = 0; i < biblioteca->total_emprestimos; i++) {
 
         //imprime somente os dados dos emprestimos ativos
-        if(emprestimos[i].ativo == 1){
+        if(biblioteca->emprestimos[i].ativo == 1){
             
             printf("ID do emprestimo: %d | ID do livro: %d | ID do usuario: %d \n",
-            emprestimos[i].idEmprestimo, emprestimos[i].idLivro, emprestimos[i].idUsuario);
+            biblioteca->emprestimos[i].idEmprestimo, biblioteca->emprestimos[i].idLivro, biblioteca->emprestimos[i].idUsuario);
 
         }
 

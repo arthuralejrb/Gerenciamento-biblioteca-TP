@@ -3,11 +3,12 @@
 #define BUSCAR_USUARIO_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
-#include "../../registros/usuario.h"
+#include "../../registros/biblioteca.h"
 
 
-void buscar_usuario(usuario *u, int total_usuarios, char busca[]) {
+void buscar_usuario(tBiblioteca *biblioteca, char busca[]) {
     /*
     Busca um nome no vetor u
     passa por todos os nomes, até achar um que possua o nome do condizente
@@ -15,32 +16,37 @@ void buscar_usuario(usuario *u, int total_usuarios, char busca[]) {
 
     int v = 0;
 
-    for(int i = 0; i < total_usuarios; i++) {
-      if(strcmp(u[i].nome, busca) == 0){
-    //Imprime os dados do usuário encontrado
-    printf("Nome: %s | ", u[i].nome);
-    printf("ID: %d | ", u[i].idUsuario);
-    printf("Email %s | ", u[i].email);
-    
-    if(u[i].ativo) {
+    for(int i = 0; i < biblioteca->total_usuarios; i++) {
+        if(strcmp(biblioteca->usuarios[i].nome, busca) == 0){
+
+        //Imprime os dados do usuário encontrado
+        printf("Nome: %s | ", biblioteca->usuarios[i].nome);
+        printf("ID: %d | ", biblioteca->usuarios[i].idUsuario);
+        printf("Email %s | ", biblioteca->usuarios[i].email);
       
-      printf("Ativo\n");
+        if(biblioteca->usuarios[i].ativo) {
+          
+          printf("Ativo\n");
+          
+        }
       
-    }
-    
-    else {
-      
-      printf("Inativo\n");
-      
-    }
-    v = 1;
-    }
+        else {
+        
+          printf("Inativo\n");
+        
+        }
+
+        v = 1;
+
+      }
   }
     
 
     if(!v) {
+    
       //já acessou todos os usuários do vetor e não encontrou
       printf("Usuario não encontrado!\n");
+    
     }
     
 }

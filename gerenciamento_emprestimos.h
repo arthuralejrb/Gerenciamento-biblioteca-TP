@@ -2,16 +2,15 @@
 #define GERENCIAMENTO_EMPRESTIMOS_H
 
 //importa as structs de emprestimo, usuario e livro
-#include "./registros/emprestimo.h"
-#include "./registros/usuario.h"
-#include "./registros/livro.h"
+#include "./registros/biblioteca.h"
 
 //importa as funções para o gerenciamento de emprestimos
 #include "./funcoes/emprestimos/listar_historico.h"
-#include "./funcoes/emprestimos/listar_registros.h"
+#include "./funcoes/emprestimos/listar_emprestimos.h"
 #include "./funcoes/emprestimos/registrar_emprestimo.h"
 #include "./funcoes/emprestimos/registrar_devolucao.h"
 #include "./funcoes/emprestimos/buscar_ide.h"
+#include "./funcoes/emprestimos/todos_emprestimos.h"
 #include "./funcoes/usuarios/buscar_idu.h"
 #include "./funcoes/menu.h"
 
@@ -19,22 +18,25 @@
 #include <stdlib.h>
 
 
-int gerenciamento_emprestimos(emprestimo *emprestimos, usuario *usuarios, 
-    livro *livros, int total_emprestimos, int total_livros, int total_usuarios) {
+void gerenciamento_emprestimos(tBiblioteca *biblioteca) {
 
-    int opcao;
+    char opcao;
     
     //Variaveis para a busca nos vetores
     int id_usuario;
     int id_livro;
     int id_emprestimo;
+    int posicao_usuario;
 
-    while(scanf("%d", &opcao)) {
+    while(scanf(" %c", &opcao)) {
 
         switch(opcao) {
 
-            case 1:
+            case '1':
                 /*Registrar novo empréstimo*/
+
+                //limpa a tela antes das leituras
+                limpar_tela();
 
                 //Lê o ID do usuário
                 printf("Informe o ID do usuário: \n");
@@ -45,20 +47,20 @@ int gerenciamento_emprestimos(emprestimo *emprestimos, usuario *usuarios,
                 scanf("%d", &id_livro);
 
                 //busca a posicao do livro e do usuario nos vetores
-                int posicao_livro = buscar_idl(livros,id_livro,total_livros);
-                int posicao_usuario = buscar_idu(usuarios, id_usuario, total_usuarios);
+                posicao_usuario = buscar_idu(biblioteca, id_usuario);
+                int posicao_livro = buscar_idl(biblioteca, id_livro);
 
-                if(livros[posicao_livro].disponivel && posicao_usuario){
+                if(biblioteca->livros[posicao_livro].disponivel && posicao_usuario){
 
                     //registra um novo emprestimo
-                    registrar_emprestimo(emprestimos, usuarios, livros, id_usuario, id_livro, total_emprestimos);
+                    registrar_emprestimo(biblioteca, id_livro, id_usuario);
                     
                     //define o livro como indisponível
-                    livros[posicao_livro].disponivel = false;
+                    biblioteca->livros[posicao_livro].disponivel = 0;
 
                     //incrementa a contadora de emprestimos e aumenta o espaço alocado pelo vetor de emprestimos
-                    total_emprestimos++;
-                    emprestimos = (emprestimo *)realloc(emprestimos, (total_emprestimos = 1) *sizeof(emprestimo));
+                    biblioteca->total_emprestimos++;
+                    biblioteca->emprestimos = (tEmprestimo *)realloc(biblioteca->emprestimos, (biblioteca->total_emprestimos + 1) * sizeof(tEmprestimo));
 
                 }
 
@@ -71,56 +73,77 @@ int gerenciamento_emprestimos(emprestimo *emprestimos, usuario *usuarios,
 
             break;
             
-            case 2:
+            case '2':
                 /*Registrar devolução de um livro*/
+                
+                //limpa a tela e lê o ID do emprestimo
+                limpar_tela();
             
                 printf("Informe o ID do emprestimo: \n");
                 scanf("%d", &id_emprestimo);
 
-                if(buscar_ide(emprestimos,livros,id_emprestimo,total_emprestimos,total_livros)){
+                if(!buscar_ide(biblioteca,id_emprestimo)){
 
-                    registrar_devolucao(emprestimos, livros, total_emprestimos,  id_emprestimo, total_livros);
+                    //registra a devolução
+                    registrar_devolucao(biblioteca,id_emprestimo);
 
                 }
 
                 else{
                 
+                    //o livro não foi emprestado
                     printf("Este livro nao foi emprestado\n");
                 
                 }
 
             break;
             
-            case 3:
+            case '3':
                 /*Listar todos emprestimos ativos*/
 
-                listar_emprestimos(emprestimos, total_emprestimos);
+                //limpa a tela e lista todos emprestimos ativos
+                limpar_tela();
+                listar_emprestimos(biblioteca);
             
             break;
             
-            case 4:
+            case '4':
                 /*Listar histórico de emprestimos*/
 
-                listar_historico(emprestimos, total_emprestimos);
+                //limpa a tela e lista todo o histórico de emprestimos
+                limpar_tela();
+                listar_historico(biblioteca);
             
             break;
             
-            case 5:
+            case '5':
                 /*Mostrar todos os livros emprestados por um usuário */
+                
+                //limpa a tela e lê o ID do usuário
+                limpar_tela();
 
                 printf("Informe o ID do usuario: \n");
+                scanf("%d", &id_usuario);
+
+                posicao_usuario = buscar_idu(biblioteca, id_usuario);
+                todos_emprestimos(biblioteca, id_usuario, posicao_usuario);
 
             break;
             
-            case 0:
+            case '0':
                 /*Retorna para o menu principal*/    
 
                 //limpa o terminal antes de retornar ao menu principal
                 limpar_tela();
-
-                //Retorna o novo total de emprestimos para o main.c
-                return total_emprestimos;
+                return;
             
+            break;
+
+            default:
+                
+                //o usuário inseriu uma opção que não existe
+                printf("Opção não existente!\n");
+
             break;
 
         }
