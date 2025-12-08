@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #include "../../registros/biblioteca.h"
+#include "../menu.h"
 
 
 void buscar_usuario(tBiblioteca *biblioteca, char busca[]) {
@@ -20,9 +21,11 @@ void buscar_usuario(tBiblioteca *biblioteca, char busca[]) {
         if(strcmp(biblioteca->usuarios[i].nome, busca) == 0){
 
         //Imprime os dados do usuário encontrado
-        printf("Nome: %s | ", biblioteca->usuarios[i].nome);
-        printf("ID: %d | ", biblioteca->usuarios[i].idUsuario);
-        printf("Email %s | ", biblioteca->usuarios[i].email);
+        limpar_tela();
+        printf("====Usuário encontrado====\n");
+        printf("Nome: %s", biblioteca->usuarios[i].nome);
+        printf("Email %s", biblioteca->usuarios[i].email);
+        printf("ID: %d \n", biblioteca->usuarios[i].idUsuario);
       
         if(biblioteca->usuarios[i].ativo) {
           

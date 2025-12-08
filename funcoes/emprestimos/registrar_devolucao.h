@@ -8,6 +8,7 @@
 
 //importa função para encontrar o livro
 #include "../livros/buscar_idl.h"
+#include "../menu.h"
 
 
 #include <stdio.h>
@@ -18,6 +19,7 @@ int registrar_devolucao(tBiblioteca *biblioteca, int id_emprestimo) {
     Registra a devolução de um emprestimo
     */
 
+    limpar_tela();
     for(int i = 0; i < biblioteca->total_emprestimos; i++){
         if(biblioteca->emprestimos[i].idEmprestimo == id_emprestimo){
             

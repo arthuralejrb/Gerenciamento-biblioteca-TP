@@ -4,6 +4,7 @@
 
 //importa as structs emprestimo, usuario e livro
 #include "../../registros/biblioteca.h"
+#include "../menu.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -45,10 +46,13 @@ void registrar_emprestimo(tBiblioteca *biblioteca, int id_livro, int id_usuario)
         // emprestimos[emprestimo_atual].dataEmprestimo = data_emprestimo;
         biblioteca->emprestimos[biblioteca->total_emprestimos].ativo = 1;
         
-        printf("\nData do emprestimo: %s\n", biblioteca->emprestimos[biblioteca->total_emprestimos].dataEmprestimo);
-        printf("ID do emprestimo: %d\n", biblioteca->emprestimos[biblioteca->total_emprestimos].idEmprestimo);
-
-}
+        limpar_tela();
+        printf("====Emprestimo realizado!====");
+        printf("ID: %d\n", biblioteca->emprestimos[biblioteca->total_emprestimos].idEmprestimo);
+        printf("ID do livro: %d\n", biblioteca->emprestimos[biblioteca->total_emprestimos].idLivro);
+        printf("ID do usuário: %d\n", biblioteca->emprestimos[biblioteca->total_emprestimos].idUsuario);
+        printf("Data do empréstimo: %s\n", biblioteca->emprestimos[biblioteca->total_emprestimos].dataEmprestimo);
+}       
 
 
 #endif

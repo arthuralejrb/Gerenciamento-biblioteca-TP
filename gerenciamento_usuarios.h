@@ -7,6 +7,7 @@
 #include "./funcoes/usuarios/listar_usuarios.h"
 #include "./funcoes/usuarios/inativar_usuario.h"
 #include "./funcoes/menu.h"
+#include "./funcoes/limpar_buffer.h"
 
 
 #include <stdlib.h>
@@ -42,12 +43,13 @@ void gerenciamento_usuarios(tBiblioteca *biblioteca) {
             case '2':
                 /*Busca um usuário no vetor*/    
                 
-
+                
                 //limpa a tela e lê a string busca com o nome do usuario
                 limpar_tela();
 
                 printf("Digite o nome do usuario: \n");
-                scanf("%s", busca);
+                limpar_buffer();
+                fgets(busca, 100, stdin);
 
                 //busca o usuario no vetor de usuarios
                 buscar_usuario(biblioteca, busca);
@@ -65,10 +67,11 @@ void gerenciamento_usuarios(tBiblioteca *biblioteca) {
             break;
 
             case '4':
-                /*Inativa um usuário*/   
+               /*Inativa um usuário*/   
                 
-                //limpa a tela e lê o ID do usuario 
-                limpar_tela();
+
+               //limpa a tela e lê o ID do usuario 
+               limpar_tela();
                printf("Digite o ID do usuário a ser inativado: \n");
                scanf("%d", &idr);
                
@@ -84,6 +87,12 @@ void gerenciamento_usuarios(tBiblioteca *biblioteca) {
                 //limpa o terminal antes e retorna ao menu principal
                 limpar_tela();
                 return;
+
+            break;
+
+            default:
+
+                printf("Opção inválida!\n");
 
             break;
 

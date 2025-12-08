@@ -17,10 +17,15 @@ void buscar_livro(tBiblioteca *biblioteca, char busca[]) {
     int v = 0;
 
         for(int i = 0; i < biblioteca->total_livros; i++) {
+            
             if(strcmp(biblioteca->livros[i].titulo, busca) == 0 || strcmp(biblioteca->livros[i].autor, busca) == 0) {
                 //printa os dados de cada livro achado
-                
-                printf("Livro: %s | Autor: %s | ID: %d | ", biblioteca->livros[i].titulo,  biblioteca->livros[i].autor, biblioteca->livros[i].idLivro);
+
+                printf("====Livro encontrado!====\n");
+                printf("Título: %s",biblioteca->livros[i].titulo);
+                printf("Autor: %s",biblioteca->livros[i].autor);
+                printf("Publicação: %d\n",biblioteca->livros[i].publicacao);
+                printf("ID: %d\n",biblioteca->livros[i].idLivro);
                 
                 if(biblioteca->livros[i].disponivel) {
 

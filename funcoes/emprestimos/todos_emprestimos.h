@@ -6,6 +6,10 @@
 #include "../../registros/biblioteca.h"
 
 
+//função para limpar a tela
+#include "../menu.h"
+
+
 #include <stdio.h>
 
 
@@ -15,6 +19,7 @@ void todos_emprestimos(tBiblioteca *biblioteca, int id_usuario, int posicao_usua
     Lista todos os emprestimos ativos
     */
 
+    limpar_tela();
     printf("====Emprestimos do usuário: %s====\n", biblioteca->usuarios[posicao_usuario].nome);
 
     for(int i = 0; i < biblioteca->total_emprestimos; i++) {
@@ -25,9 +30,6 @@ void todos_emprestimos(tBiblioteca *biblioteca, int id_usuario, int posicao_usua
 
         }
     }
-    
-
-    printf("\n");
 
 }
 

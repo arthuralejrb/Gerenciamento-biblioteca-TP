@@ -21,13 +21,15 @@ void inativar_usuario(tBiblioteca *biblioteca, int id){
         if(biblioteca->usuarios[i].idUsuario == id){
         
             usuario = i;
+            
             biblioteca->usuarios[usuario].ativo = 0;
+            printf("Usuário inativado com sucesso! \n");
+
             return;
         
         }
     }
 
-     printf("Usuário inativado com sucesso! \n");
 
 }
 

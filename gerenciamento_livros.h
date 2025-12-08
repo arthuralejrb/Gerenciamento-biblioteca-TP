@@ -12,6 +12,7 @@
 #include "./funcoes/livros/atualizar_livro.h"
 #include "./funcoes/livros/remover_livro.h"
 #include "./funcoes/menu.h"
+#include "./funcoes/limpar_buffer.h"
 
 #include <stdlib.h>
 
@@ -49,7 +50,8 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 limpar_tela();
 
                 printf("Digite o título do livro ou nome do autor: \n");
-                scanf("%s", busca);
+                limpar_buffer();
+                fgets(busca, sizeof(busca), stdin);
 
                 //busca um livro no vetor de livros
                 buscar_livro(biblioteca, busca);
@@ -107,6 +109,12 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 //limpa o terminal antes de retornar ao menu principal
                 limpar_tela();
                 return;
+
+            break;
+
+            default:
+
+                printf("Opção inválida!\n");
 
             break;
 

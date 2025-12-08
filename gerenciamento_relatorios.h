@@ -66,7 +66,7 @@ int gerenciamento_relatorios(tBiblioteca *biblioteca) {
 
             default:
 
-                printf("Opção inexistente!\n");
+                printf("Opção inválida!\n");
             
             break;
 

@@ -6,6 +6,8 @@
 
 //importa a struct livro
 #include "../../registros/biblioteca.h"
+#include "../menu.h"
+#include "../limpar_buffer.h"
 
 
 void adicionar_livro(tBiblioteca *biblioteca) {
@@ -16,16 +18,15 @@ void adicionar_livro(tBiblioteca *biblioteca) {
     */
 
     printf("\n");
+    limpar_buffer(); 
 
     //lê o título do novo livro
     printf("Informe o título do livro: \n");
-    
-    //fgets
-    scanf("%s", biblioteca->livros[biblioteca->total_livros].titulo);
+    fgets(biblioteca->livros[biblioteca->total_livros].titulo, 100, stdin);
 
     //lê o autor do novo livro
-    printf("Informe o nome do Autor: \n");
-    scanf("%s", biblioteca->livros[biblioteca->total_livros].autor);
+    printf("Informe o autor do livro: \n");
+    fgets(biblioteca->livros[biblioteca->total_livros].autor, 100, stdin );
 
     //lê o ano de publicação do novo livro
     printf("Informe o ano de publicação: \n");
@@ -44,7 +45,14 @@ void adicionar_livro(tBiblioteca *biblioteca) {
         biblioteca->livros[biblioteca->total_livros].idLivro = biblioteca->livros[biblioteca->total_livros - 1].idLivro + 1;
 
     }
-        printf("\nID do novo livro é: %d\n",biblioteca->livros[biblioteca->total_livros].idLivro);
+
+    //printa os dados do novo livro
+    limpar_tela();
+    printf("====Livro adicionado!====\n");
+    printf("Título: %s",biblioteca->livros[biblioteca->total_livros].titulo);
+    printf("Autor: %s",biblioteca->livros[biblioteca->total_livros].autor);
+    printf("Publicação: %d\n",biblioteca->livros[biblioteca->total_livros].publicacao);
+    printf("ID: %d\n",biblioteca->livros[biblioteca->total_livros].idLivro);
 
 }
 

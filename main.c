@@ -60,7 +60,7 @@ int main(){
                 //limpa a tela e printa o menu de usuarios
                 limpar_tela();
                 menu_de_usuarios();
-                
+            
                 //chama a funcao que vai ler as entradas no menu de usuarios
                 gerenciamento_usuarios(&biblioteca);
 

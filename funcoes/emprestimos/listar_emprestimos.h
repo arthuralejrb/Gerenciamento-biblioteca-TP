@@ -6,6 +6,10 @@
 #include "../../registros/biblioteca.h"
 
 
+//funções para limpar a tela
+#include "../menu.h"
+
+
 #include <stdio.h>
 
 
@@ -15,6 +19,7 @@ void listar_emprestimos(tBiblioteca *biblioteca) {
     Lista todos os emprestimos ativos
     */
 
+    limpar_tela();
     printf("====Emprestimos ativos====\n");
 
     for(int i = 0; i < biblioteca->total_emprestimos; i++) {
@@ -28,8 +33,6 @@ void listar_emprestimos(tBiblioteca *biblioteca) {
         }
 
     }
-
-    printf("\n");
 
 }
 

@@ -7,6 +7,7 @@
 
 //importa a struct usuario
 #include "../../registros/biblioteca.h"
+// #include "./menu.h"
 
 
 void listar_usuarios(tBiblioteca *biblioteca) {
@@ -15,7 +16,7 @@ void listar_usuarios(tBiblioteca *biblioteca) {
   Lista todos os usuários cadastrados
   */
 
-  printf("\n");
+//  limpar_tela();
 
   for(int i = 0; i < biblioteca->total_usuarios; i++) {
     
@@ -34,8 +35,6 @@ void listar_usuarios(tBiblioteca *biblioteca) {
     }
 
   }
-
-  printf("\n");
 
 }
 

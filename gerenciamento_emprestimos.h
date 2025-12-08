@@ -142,7 +142,7 @@ void gerenciamento_emprestimos(tBiblioteca *biblioteca) {
             default:
                 
                 //o usuário inseriu uma opção que não existe
-                printf("Opção não existente!\n");
+                printf("Opção inválida!\n");
 
             break;
 

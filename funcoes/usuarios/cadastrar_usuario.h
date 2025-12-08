@@ -7,6 +7,8 @@
 
 //inclui as structs para o gerenciamento da biblitoeca
 #include "../../registros/biblioteca.h"
+#include "../menu.h"
+#include "../limpar_buffer.h"
 
 
 void cadastrar_usuario(tBiblioteca *biblioteca){
@@ -15,13 +17,16 @@ void cadastrar_usuario(tBiblioteca *biblioteca){
     Adiciona um usuário ao vetor de usuarios
     usa a contadora de usuarios para acessar a ultima posição do vetor
     */
+
+
    //Lê o nome do usuario
+   limpar_buffer();
    printf("Informe o nome do usuario: \n");
-   scanf("%s", biblioteca->usuarios[biblioteca->total_usuarios].nome);
+   fgets(biblioteca->usuarios[biblioteca->total_usuarios].nome, 100, stdin);
 
     //Lê o email do usuário
     printf("Digite o email do usuario: \n");
-    scanf("%s", biblioteca->usuarios[biblioteca->total_usuarios].email);
+    fgets(biblioteca->usuarios[biblioteca->total_usuarios].email, 100, stdin);
 
     
     //define o estado de ativo do usuário como verdadeiro
@@ -39,7 +44,11 @@ void cadastrar_usuario(tBiblioteca *biblioteca){
         
     }
 
-    printf("ID do novo usuario é: %d\n",biblioteca->usuarios[biblioteca->total_usuarios].idUsuario);
+    limpar_tela();
+    printf("====Usuário adicionado!====\n");
+    printf("Nome: %s\n",biblioteca->usuarios[biblioteca->total_usuarios].nome);
+    printf("Email: %s\n",biblioteca->usuarios[biblioteca->total_usuarios].email);
+    printf("ID: %d\n",biblioteca->usuarios[biblioteca->total_usuarios].idUsuario);
 
 }
 

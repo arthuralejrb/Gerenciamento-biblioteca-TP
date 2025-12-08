@@ -6,6 +6,7 @@
 
 
 void menu_principal() {
+    
     printf("\n");
     printf("====MENU DE PRINCIPAL====\n");
     printf("1. Gerenciamento de livros\n");

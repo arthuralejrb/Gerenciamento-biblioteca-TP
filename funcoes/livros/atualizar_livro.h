@@ -19,6 +19,12 @@ void atualizar_livro(tBiblioteca *biblioteca, int posicao) {
 
     char opcao;
 
+    printf("====Dados do livro====\n");
+    printf("Título: %s\n",biblioteca->livros[posicao].titulo);
+    printf("Autor: %s\n",biblioteca->livros[posicao].autor);
+    printf("Publicação: %d\n",biblioteca->livros[posicao].publicacao);
+    printf("ID: %d\n",biblioteca->livros[posicao].idLivro);
+
     //printa o menu com as opções para atualização do livro
     menu_atualizacao();
     scanf(" %c", &opcao);
@@ -56,6 +62,8 @@ void atualizar_livro(tBiblioteca *biblioteca, int posicao) {
         break;
     }
     
+    limpar_tela();
+
 }
 
 
