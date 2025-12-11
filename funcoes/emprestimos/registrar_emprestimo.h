@@ -4,7 +4,7 @@
 
 //importa as structs emprestimo, usuario e livro
 #include "../../registros/biblioteca.h"
-#include "../menu.h"
+#include "../utils/menu.h"
 
 #include <stdio.h>
 #include <string.h>

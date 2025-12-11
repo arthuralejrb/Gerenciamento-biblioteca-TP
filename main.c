@@ -11,11 +11,12 @@
 
 
 //importa todas as funções para gerenciamento da biblioteca
-#include "gerenciamento_livros.h"
-#include "gerenciamento_emprestimos.h"
-#include "gerenciamento_usuarios.h"
-#include "gerenciamento_relatorios.h"
-#include "./funcoes/menu.h"
+#include "./menus/gerenciamento_livros.h"
+#include "./menus/gerenciamento_emprestimos.h"
+#include "./menus/gerenciamento_usuarios.h"
+#include "./menus/gerenciamento_relatorios.h"
+#include "./funcoes/utils/menu.h"
+#include "./funcoes/utils/carregar_dados.h"
 
 
 int main(){
@@ -23,7 +24,7 @@ int main(){
     //incialização dos vetores dinamicos
     tBiblioteca biblioteca;
 
-    biblioteca.livros = (tLivro *)calloc(1,sizeof(tLivro)); 
+    biblioteca.livros = NULL; 
     biblioteca.usuarios = (tUsuario *)calloc(1,sizeof(tUsuario));
     biblioteca.emprestimos = (tEmprestimo *)calloc(1,sizeof(tEmprestimo));
     
@@ -31,6 +32,10 @@ int main(){
     biblioteca.total_emprestimos = 0;
     biblioteca.total_livros = 0;
     biblioteca.total_usuarios = 0;
+
+    carregar_dados("livros.csv", &biblioteca);
+    carregar_dados("usuarios.csv", &biblioteca);
+    carregar_dados("emprestimos.csv", &biblioteca);
 
     char opcao = 0;
     

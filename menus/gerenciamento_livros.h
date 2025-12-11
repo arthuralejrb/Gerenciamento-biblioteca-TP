@@ -2,17 +2,19 @@
 #define GERENCIAMENTO_LIVROS_H
 
 //importa a struct livro
-#include "./registros/biblioteca.h"
+#include "../registros/biblioteca.h"
 
 //importa as funções para gerenciamento dos livros
-#include "./funcoes/livros/adicionar_livro.h"
-#include "./funcoes/livros/buscar_livro.h"
-#include "./funcoes/livros/listar_livros.h"
-#include "./funcoes/livros/buscar_idl.h"
-#include "./funcoes/livros/atualizar_livro.h"
-#include "./funcoes/livros/remover_livro.h"
-#include "./funcoes/menu.h"
-#include "./funcoes/limpar_buffer.h"
+#include "../funcoes/livros/adicionar_livro.h"
+#include "../funcoes/livros/buscar_livro.h"
+#include "../funcoes/livros/listar_livros.h"
+#include "../funcoes/livros/buscar_idl.h"
+#include "../funcoes/livros/atualizar_livro.h"
+#include "../funcoes/livros/remover_livro.h"
+#include "../funcoes/utils/menu.h"
+#include "../funcoes/utils/limpar_buffer.h"
+#include "../funcoes/utils/escrever.h"
+#include "../funcoes/utils/remover_linha.h"
 
 #include <stdlib.h>
 
@@ -40,6 +42,8 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 biblioteca->total_livros++; 
                 biblioteca->livros = (tLivro *)realloc(biblioteca->livros, (biblioteca->total_livros + 1) * sizeof(tLivro));
 
+                escrever_livros("livros.csv", biblioteca);
+
             break;
 
             
@@ -52,6 +56,7 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 printf("Digite o título do livro ou nome do autor: \n");
                 limpar_buffer();
                 fgets(busca, sizeof(busca), stdin);
+                remover_linha(busca);
 
                 //busca um livro no vetor de livros
                 buscar_livro(biblioteca, busca);
@@ -64,7 +69,8 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 //limpa a tela e lista todos os livros no vetor
                 limpar_tela();
                 listar_livros(biblioteca);
-            
+                printf("%d\n", biblioteca->total_livros);
+
             break;
 
             case '4':
@@ -80,6 +86,7 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
 
                 //atualiza os dados do livro
                 atualizar_livro(biblioteca, posicao);
+                escrever_livros("livros.csv", biblioteca);
 
             break;
 
@@ -101,6 +108,8 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 biblioteca->total_livros--;
                 biblioteca->livros = (tLivro *)realloc(biblioteca->livros, (biblioteca->total_livros + 1)*sizeof(tLivro));
                 
+                escrever_livros("livros.csv", biblioteca);
+            
             break;
 
             case '0':

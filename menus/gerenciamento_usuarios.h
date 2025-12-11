@@ -1,13 +1,18 @@
+#ifndef GERENCIAMENTO_USUARIOS_H
+#define GERENCIAMENTO_USUARIOS_H
+
+
 //importa a struct usuario
-#include "./registros/biblioteca.h"
+#include "../registros/biblioteca.h"
 
 //importa todas funções para gerenciamento dos usuarios
-#include "./funcoes/usuarios/cadastrar_usuario.h"
-#include "./funcoes/usuarios/buscar_usuario.h"
-#include "./funcoes/usuarios/listar_usuarios.h"
-#include "./funcoes/usuarios/inativar_usuario.h"
-#include "./funcoes/menu.h"
-#include "./funcoes/limpar_buffer.h"
+#include "../funcoes/usuarios/cadastrar_usuario.h"
+#include "../funcoes/usuarios/buscar_usuario.h"
+#include "../funcoes/usuarios/listar_usuarios.h"
+#include "../funcoes/usuarios/inativar_usuario.h"
+#include "../funcoes/utils/menu.h"
+#include "../funcoes/utils/limpar_buffer.h"
+#include "../funcoes/utils/escrever.h"
 
 
 #include <stdlib.h>
@@ -37,6 +42,7 @@ void gerenciamento_usuarios(tBiblioteca *biblioteca) {
                 //incrementa o total de usuarios e aumenta o espaço alocado para o vetor de usuarios
                 biblioteca->total_usuarios++; 
                 biblioteca->usuarios = (tUsuario *)realloc(biblioteca->usuarios, (biblioteca->total_usuarios + 1)*sizeof(tUsuario));
+                escrever_usuarios("usuarios.csv", biblioteca);
 
             break;
 
@@ -77,6 +83,7 @@ void gerenciamento_usuarios(tBiblioteca *biblioteca) {
                
                //inativa o usuário
                inativar_usuario(biblioteca, idr);
+               escrever_usuarios("usuarios.csv", biblioteca);
 
             break;
 
@@ -103,3 +110,6 @@ void gerenciamento_usuarios(tBiblioteca *biblioteca) {
 
     }
 }
+
+
+#endif

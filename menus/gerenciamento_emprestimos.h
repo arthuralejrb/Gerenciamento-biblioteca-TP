@@ -2,17 +2,18 @@
 #define GERENCIAMENTO_EMPRESTIMOS_H
 
 //importa as structs de emprestimo, usuario e livro
-#include "./registros/biblioteca.h"
+#include "../registros/biblioteca.h"
 
 //importa as funções para o gerenciamento de emprestimos
-#include "./funcoes/emprestimos/listar_historico.h"
-#include "./funcoes/emprestimos/listar_emprestimos.h"
-#include "./funcoes/emprestimos/registrar_emprestimo.h"
-#include "./funcoes/emprestimos/registrar_devolucao.h"
-#include "./funcoes/emprestimos/buscar_ide.h"
-#include "./funcoes/emprestimos/todos_emprestimos.h"
-#include "./funcoes/usuarios/buscar_idu.h"
-#include "./funcoes/menu.h"
+#include "../funcoes/emprestimos/listar_historico.h"
+#include "../funcoes/emprestimos/listar_emprestimos.h"
+#include "../funcoes/emprestimos/registrar_emprestimo.h"
+#include "../funcoes/emprestimos/registrar_devolucao.h"
+#include "../funcoes/emprestimos/buscar_ide.h"
+#include "../funcoes/emprestimos/todos_emprestimos.h"
+#include "../funcoes/usuarios/buscar_idu.h"
+#include "../funcoes/utils/menu.h"
+#include "../funcoes/utils/escrever.h"
 
 
 #include <stdlib.h>
@@ -61,7 +62,7 @@ void gerenciamento_emprestimos(tBiblioteca *biblioteca) {
                     //incrementa a contadora de emprestimos e aumenta o espaço alocado pelo vetor de emprestimos
                     biblioteca->total_emprestimos++;
                     biblioteca->emprestimos = (tEmprestimo *)realloc(biblioteca->emprestimos, (biblioteca->total_emprestimos + 1) * sizeof(tEmprestimo));
-
+                    escrever_emprestimos("emprestimos.csv", biblioteca);
                 }
 
                 else{
@@ -70,6 +71,7 @@ void gerenciamento_emprestimos(tBiblioteca *biblioteca) {
                     printf("Emprestimo impossível : usuário inativo ou livro indisponível\n");
                 
                 }
+                
 
             break;
             
@@ -86,7 +88,7 @@ void gerenciamento_emprestimos(tBiblioteca *biblioteca) {
 
                     //registra a devolução
                     registrar_devolucao(biblioteca,id_emprestimo);
-
+                    escrever_emprestimos("emprestimos.csv", biblioteca);
                 }
 
                 else{

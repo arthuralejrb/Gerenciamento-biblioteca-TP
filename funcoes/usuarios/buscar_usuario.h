@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 #include "../../registros/biblioteca.h"
-#include "../menu.h"
+#include "../utils/menu.h"
 
 
 void buscar_usuario(tBiblioteca *biblioteca, char busca[]) {

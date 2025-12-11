@@ -1,12 +1,16 @@
+#ifndef GERENCIAMENTO_RELATORIOS_H
+#define GERENCIAMENTO_RELATORIOS_H
+
+
 //importa todas structs para o gerenciamento de relatorios
-#include "./registros/biblioteca.h"
+#include "../registros/biblioteca.h"
 
 
 //importa todas as funções para o gerenciamento de relatorios
-#include "./funcoes/relatorios/contar_livros.h"
-#include "./funcoes/relatorios/emprestimos_usuario.h"
-#include "./funcoes/relatorios/emprestimos_livro.h"
-#include "./funcoes/menu.h"
+#include "../funcoes/relatorios/contar_livros.h"
+#include "../funcoes/relatorios/emprestimos_usuario.h"
+#include "../funcoes/relatorios/emprestimos_livro.h"
+#include "../funcoes/utils/menu.h"
 
 
 #include <stdlib.h>
@@ -80,3 +84,6 @@ int gerenciamento_relatorios(tBiblioteca *biblioteca) {
     }
 
 }
+
+
+#endif

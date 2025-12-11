@@ -7,8 +7,8 @@
 
 //inclui as structs para o gerenciamento da biblitoeca
 #include "../../registros/biblioteca.h"
-#include "../menu.h"
-#include "../limpar_buffer.h"
+#include "../utils/menu.h"
+#include "../utils/limpar_buffer.h"
 
 
 void cadastrar_usuario(tBiblioteca *biblioteca){

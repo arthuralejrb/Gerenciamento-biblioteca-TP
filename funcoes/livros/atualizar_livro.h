@@ -8,7 +8,8 @@
 
 //importa a struct livro
 #include "../../registros/biblioteca.h"
-#include "../menu.h"
+#include "../utils/menu.h"
+#include "../utils/limpar_buffer.h"
 
 
 void atualizar_livro(tBiblioteca *biblioteca, int posicao) {
@@ -18,6 +19,7 @@ void atualizar_livro(tBiblioteca *biblioteca, int posicao) {
     */
 
     char opcao;
+    limpar_buffer();
 
     printf("====Dados do livro====\n");
     printf("Título: %s\n",biblioteca->livros[posicao].titulo);
@@ -35,7 +37,7 @@ void atualizar_livro(tBiblioteca *biblioteca, int posicao) {
             //atualiza o título do livro
             
             printf("Informe o novo título: \n");
-            scanf("%s", biblioteca->livros[posicao].titulo);
+            fgets( biblioteca->livros[posicao].titulo, 100, stdin);
 
         break;
 
@@ -43,7 +45,7 @@ void atualizar_livro(tBiblioteca *biblioteca, int posicao) {
             //atualiza o autor do livro
 
             printf("Informe o novo autor: \n");
-            scanf("%s", biblioteca->livros[posicao].autor);
+            fgets( biblioteca->livros[posicao].autor, 100, stdin);
 
         break;
 
