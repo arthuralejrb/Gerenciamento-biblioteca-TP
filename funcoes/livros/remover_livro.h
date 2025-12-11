@@ -8,7 +8,7 @@
 #include "../../registros/biblioteca.h"
 
 
-void remover_livro(tBiblioteca *biblioteca, int posicao) {
+int remover_livro(tBiblioteca *biblioteca, int posicao) {
 
     /*
     Remove um livro do vetor de livros
@@ -20,18 +20,29 @@ void remover_livro(tBiblioteca *biblioteca, int posicao) {
     if(biblioteca->livros == NULL || biblioteca->total_livros <= 0) {
         
         printf("Erro: vetor vazio\n");
-    
+        return 0;
+
     }
     else{
         if(posicao != biblioteca->total_livros - 1){
-            //varre o vetor livro e move os livros para trás
+            
             for(int i = posicao; i < biblioteca->total_livros - 1; i++) {
-            biblioteca->livros[i] = biblioteca->livros[i + 1];
+     
+                //varre o vetor livro e move os livros para trás
+                biblioteca->livros[i] = biblioteca->livros[i + 1];
+                printf("Livro removido com sucesso! \n");
+     
+            }
+            
+            return 1;    
+        
+        }else {
+     
+            printf("Livro removido com sucesso! \n");
+            return 1;
+     
         }
-     }
     }
-
-    printf("Livro removido com sucesso! \n");
 
 }
 

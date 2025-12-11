@@ -13,22 +13,17 @@ void listar_livros(tBiblioteca *biblioteca) {
     /*
         Lista todos os livros armazenados
     */
-   
+
+    printf("====Livros cadastrados!====\n");
 
     for(int i = 0; i < biblioteca->total_livros; i++) {
+        
         //printa os dados de cada livro achado
-        printf("Livro: %s | ID: %d | ", biblioteca->livros[i].titulo, biblioteca->livros[i].idLivro);
+        printf("Título do livro: %s", biblioteca->livros[i].titulo);
+        printf("Autor: %s ", biblioteca->livros[i].autor);
+        printf("Ano de publicação: %d\n", biblioteca->livros[i].publicacao);
+        printf("ID: %d ", biblioteca->livros[i].idLivro);
 
-        if(biblioteca->livros[i].disponivel){
-        
-            printf("Disponível\n");
-        
-        }
-        else{
-        
-            printf("Indisponível\n");
-        
-        }
     }
 
     printf("\n");
