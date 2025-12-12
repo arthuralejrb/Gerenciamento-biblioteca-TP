@@ -13,6 +13,7 @@
 #include "../funcoes/utils/menu.h"
 #include "../funcoes/utils/limpar_buffer.h"
 #include "../funcoes/utils/escrever.h"
+#include "../funcoes/utils/remover_linha.h"
 
 
 #include <stdlib.h>
@@ -22,6 +23,7 @@
 void gerenciamento_usuarios(tBiblioteca *biblioteca) {
 
     char opcao;
+    limpar_buffer();
 
     while(scanf(" %c", &opcao)){ 
 
@@ -39,9 +41,6 @@ void gerenciamento_usuarios(tBiblioteca *biblioteca) {
                 limpar_tela();
                 cadastrar_usuario(biblioteca);
                 
-                //incrementa o total de usuarios e aumenta o espaço alocado para o vetor de usuarios
-                biblioteca->total_usuarios++; 
-                biblioteca->usuarios = (tUsuario *)realloc(biblioteca->usuarios, (biblioteca->total_usuarios + 1)*sizeof(tUsuario));
                 escrever_usuarios("usuarios.csv", biblioteca);
 
             break;
@@ -54,8 +53,9 @@ void gerenciamento_usuarios(tBiblioteca *biblioteca) {
                 limpar_tela();
 
                 printf("Digite o nome do usuario: \n");
-                limpar_buffer();
+                
                 fgets(busca, 100, stdin);
+                remover_linha(busca);
 
                 //busca o usuario no vetor de usuarios
                 buscar_usuario(biblioteca, busca);

@@ -9,6 +9,7 @@
 #include "../../registros/biblioteca.h"
 #include "../utils/menu.h"
 #include "../utils/limpar_buffer.h"
+#include "../utils/remover_linha.h"
 
 
 void cadastrar_usuario(tBiblioteca *biblioteca){
@@ -18,37 +19,45 @@ void cadastrar_usuario(tBiblioteca *biblioteca){
     usa a contadora de usuarios para acessar a ultima posição do vetor
     */
 
+    tUsuario usuario;
 
    //Lê o nome do usuario
    limpar_buffer();
    printf("Informe o nome do usuario: \n");
-   fgets(biblioteca->usuarios[biblioteca->total_usuarios].nome, 100, stdin);
+   fgets(usuario.nome, 100, stdin);
+    remover_linha(usuario.nome);
 
     //Lê o email do usuário
     printf("Digite o email do usuario: \n");
-    fgets(biblioteca->usuarios[biblioteca->total_usuarios].email, 100, stdin);
+    fgets(usuario.email, 100, stdin);
+    remover_linha(usuario.email);
 
     
     //define o estado de ativo do usuário como verdadeiro
-    biblioteca->usuarios[biblioteca->total_usuarios].ativo = 1;
+    usuario.ativo = 1;
 
     //define o id do i-ésimo livro como o id do livro anterior + 1  
 
     if(biblioteca->total_usuarios == 0) {
         
-        biblioteca->usuarios[biblioteca->total_usuarios].idUsuario = 1;
+        usuario.idUsuario = 1;
         
     }else{
         
-        biblioteca->usuarios[biblioteca->total_usuarios].idUsuario = biblioteca->usuarios[biblioteca->total_usuarios - 1].idUsuario + 1;
+        usuario.idUsuario = biblioteca->usuarios[biblioteca->total_usuarios - 1].idUsuario + 1;
         
     }
 
     limpar_tela();
     printf("====Usuário adicionado!====\n");
-    printf("Nome: %s\n",biblioteca->usuarios[biblioteca->total_usuarios].nome);
-    printf("Email: %s\n",biblioteca->usuarios[biblioteca->total_usuarios].email);
-    printf("ID: %d\n",biblioteca->usuarios[biblioteca->total_usuarios].idUsuario);
+    printf("Nome: %s\n",usuario.nome);
+    printf("Email: %s\n",usuario.email);
+    printf("ID: %d\n",usuario.idUsuario);
+
+    
+    biblioteca->usuarios = (tUsuario *)realloc(biblioteca->usuarios, (biblioteca->total_usuarios + 1)*sizeof(tUsuario));
+    biblioteca->usuarios[biblioteca->total_usuarios] = usuario;
+    biblioteca->total_usuarios++; 
 
 }
 

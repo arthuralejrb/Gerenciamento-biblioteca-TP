@@ -39,8 +39,6 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 adicionar_livro(biblioteca);
 
                 //incrementa a contadora de livros e aumenta o espaço alocado pelo vetor de livros
-                biblioteca->total_livros++; 
-                biblioteca->livros = (tLivro *)realloc(biblioteca->livros, (biblioteca->total_livros + 1) * sizeof(tLivro));
 
                 escrever_livros("livros.csv", biblioteca);
 
@@ -69,7 +67,6 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 //limpa a tela e lista todos os livros no vetor
                 limpar_tela();
                 listar_livros(biblioteca);
-                printf("%d\n", biblioteca->total_livros);
 
             break;
 

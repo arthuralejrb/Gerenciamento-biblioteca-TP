@@ -28,6 +28,7 @@ void gerenciamento_emprestimos(tBiblioteca *biblioteca) {
     int id_livro;
     int id_emprestimo;
     int posicao_usuario;
+    int posicao_livro;
 
     while(scanf(" %c", &opcao)) {
 
@@ -49,7 +50,7 @@ void gerenciamento_emprestimos(tBiblioteca *biblioteca) {
 
                 //busca a posicao do livro e do usuario nos vetores
                 posicao_usuario = buscar_idu(biblioteca, id_usuario);
-                int posicao_livro = buscar_idl(biblioteca, id_livro);
+                posicao_livro = buscar_idl(biblioteca, id_livro);
 
                 if(biblioteca->livros[posicao_livro].disponivel && posicao_usuario){
 
@@ -60,8 +61,7 @@ void gerenciamento_emprestimos(tBiblioteca *biblioteca) {
                     biblioteca->livros[posicao_livro].disponivel = 0;
 
                     //incrementa a contadora de emprestimos e aumenta o espaço alocado pelo vetor de emprestimos
-                    biblioteca->total_emprestimos++;
-                    biblioteca->emprestimos = (tEmprestimo *)realloc(biblioteca->emprestimos, (biblioteca->total_emprestimos + 1) * sizeof(tEmprestimo));
+                    
                     escrever_emprestimos("emprestimos.csv", biblioteca);
                 }
 
@@ -84,13 +84,12 @@ void gerenciamento_emprestimos(tBiblioteca *biblioteca) {
                 printf("Informe o ID do emprestimo: \n");
                 scanf("%d", &id_emprestimo);
 
-                if(!buscar_ide(biblioteca,id_emprestimo)){
+                if(buscar_ide(biblioteca,id_emprestimo)){
 
                     //registra a devolução
                     registrar_devolucao(biblioteca,id_emprestimo);
                     escrever_emprestimos("emprestimos.csv", biblioteca);
                 }
-
                 else{
                 
                     //o livro não foi emprestado

@@ -61,7 +61,9 @@ void adicionar_livro(tBiblioteca *biblioteca) {
     printf("Publicação: %d\n",novo.publicacao);
     printf("ID: %d\n",novo.idLivro);
 
+    biblioteca->livros = (tLivro *)realloc(biblioteca->livros, (biblioteca->total_livros + 1) * sizeof(tLivro));
     biblioteca->livros[biblioteca->total_livros] = novo;
+    biblioteca->total_livros++;
 }
 
 #endif

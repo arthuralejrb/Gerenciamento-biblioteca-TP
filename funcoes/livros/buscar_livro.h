@@ -22,8 +22,8 @@ void buscar_livro(tBiblioteca *biblioteca, char busca[]) {
                 //printa os dados de cada livro achado
 
                 printf("====Livro encontrado!====\n");
-                printf("Título: %s",biblioteca->livros[i].titulo);
-                printf("Autor: %s",biblioteca->livros[i].autor);
+                printf("Título: %s\n",biblioteca->livros[i].titulo);
+                printf("Autor: %s\n",biblioteca->livros[i].autor);
                 printf("Publicação: %d\n",biblioteca->livros[i].publicacao);
                 printf("ID: %d\n",biblioteca->livros[i].idLivro);
                 

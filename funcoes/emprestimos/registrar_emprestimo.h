@@ -18,6 +18,8 @@ void registrar_emprestimo(tBiblioteca *biblioteca, int id_livro, int id_usuario)
         usa a contadora de emprestimos pra acessar a ultima posição do vetor
         */
 
+        tEmprestimo novo_emprestimo;
+
 
         //define a data do emprestimo
         time_t agora;
@@ -26,32 +28,36 @@ void registrar_emprestimo(tBiblioteca *biblioteca, int id_livro, int id_usuario)
         time(&agora);
         info = localtime(&agora);
 
-        strftime(biblioteca->emprestimos[biblioteca->total_emprestimos].dataEmprestimo, 11 , "%d/%m/%Y", info);
+        strftime(novo_emprestimo.dataEmprestimo, 11 , "%d/%m/%Y", info);
         
         //define os dados do emprestimo
         if(biblioteca->total_emprestimos == 0) {
             
-                biblioteca->emprestimos[biblioteca->total_emprestimos].idEmprestimo = 1;
+                novo_emprestimo.idEmprestimo = 1;
                 
         }else{
                 
-                biblioteca->emprestimos[biblioteca->total_emprestimos].idEmprestimo = biblioteca->emprestimos[biblioteca->total_emprestimos - 1].idEmprestimo + 1; 
+                novo_emprestimo.idEmprestimo = biblioteca->emprestimos[biblioteca->total_emprestimos - 1].idEmprestimo + 1; 
                 
         }
 
         //define os IDs no emprestimo 
-        biblioteca->emprestimos[biblioteca->total_emprestimos].idLivro = id_livro;
-        biblioteca->emprestimos[biblioteca->total_emprestimos].idUsuario = id_usuario;
+        novo_emprestimo.idLivro = id_livro;
+        novo_emprestimo.idUsuario = id_usuario;
         
         // emprestimos[emprestimo_atual].dataEmprestimo = data_emprestimo;
-        biblioteca->emprestimos[biblioteca->total_emprestimos].ativo = 1;
+        novo_emprestimo.ativo = 1;
         
         limpar_tela();
-        printf("====Emprestimo realizado!====");
-        printf("ID: %d\n", biblioteca->emprestimos[biblioteca->total_emprestimos].idEmprestimo);
-        printf("ID do livro: %d\n", biblioteca->emprestimos[biblioteca->total_emprestimos].idLivro);
-        printf("ID do usuário: %d\n", biblioteca->emprestimos[biblioteca->total_emprestimos].idUsuario);
-        printf("Data do empréstimo: %s\n", biblioteca->emprestimos[biblioteca->total_emprestimos].dataEmprestimo);
+        printf("====Emprestimo realizado!====\n");
+        printf("ID do emprestimo: %d\n", novo_emprestimo.idEmprestimo);
+        printf("ID do livro: %d\n", novo_emprestimo.idLivro);
+        printf("ID do usuário: %d\n", novo_emprestimo.idUsuario);
+        printf("Data do empréstimo: %s\n", novo_emprestimo.dataEmprestimo);
+
+        biblioteca->emprestimos = (tEmprestimo *)realloc(biblioteca->emprestimos, (biblioteca->total_emprestimos + 1) * sizeof(tEmprestimo));
+        biblioteca->emprestimos[biblioteca->total_emprestimos] = novo_emprestimo;
+        biblioteca->total_emprestimos++;
 }       
 
 

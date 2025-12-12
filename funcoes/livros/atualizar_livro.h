@@ -10,6 +10,7 @@
 #include "../../registros/biblioteca.h"
 #include "../utils/menu.h"
 #include "../utils/limpar_buffer.h"
+#include "../utils/remover_linha.h"
 
 
 void atualizar_livro(tBiblioteca *biblioteca, int posicao) {
@@ -37,7 +38,8 @@ void atualizar_livro(tBiblioteca *biblioteca, int posicao) {
             //atualiza o título do livro
             
             printf("Informe o novo título: \n");
-            fgets( biblioteca->livros[posicao].titulo, 100, stdin);
+            fgets(biblioteca->livros[posicao].titulo, 100, stdin);
+            remover_linha(biblioteca->livros[posicao].titulo);
 
         break;
 
@@ -46,6 +48,7 @@ void atualizar_livro(tBiblioteca *biblioteca, int posicao) {
 
             printf("Informe o novo autor: \n");
             fgets( biblioteca->livros[posicao].autor, 100, stdin);
+            remover_linha(biblioteca->livros[posicao].autor);
 
         break;
 

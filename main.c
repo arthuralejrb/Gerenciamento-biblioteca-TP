@@ -25,8 +25,8 @@ int main(){
     tBiblioteca biblioteca;
 
     biblioteca.livros = NULL; 
-    biblioteca.usuarios = (tUsuario *)calloc(1,sizeof(tUsuario));
-    biblioteca.emprestimos = (tEmprestimo *)calloc(1,sizeof(tEmprestimo));
+    biblioteca.usuarios = NULL;
+    biblioteca.emprestimos = NULL;
     
     //inicialização dos contadores
     biblioteca.total_emprestimos = 0;

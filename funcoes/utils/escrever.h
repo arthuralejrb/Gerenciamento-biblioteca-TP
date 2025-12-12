@@ -75,7 +75,7 @@ int escrever_emprestimos(char *nomeArquivo, tBiblioteca *biblioteca){
     if(arquivo) {
         fprintf(arquivo, "idEmprestimo;idUsuario;idLivro;dataEmprestimo;dataDevolucao;ativo\n");
 
-        for(int i = 0; i < biblioteca->total_usuarios; i++){
+        for(int i = 0; i < biblioteca->total_emprestimos; i++){
            
             fprintf(arquivo, "%d;%d;%d;%s;%s;%d\n",
             biblioteca->emprestimos[i].idEmprestimo,
