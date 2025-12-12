@@ -65,7 +65,7 @@ int emprestimos_livro(tBiblioteca *biblioteca) {
     //libera a memoria alocada pelo vetor frequencia
     free(frequencia);
 
-    printf("ID do usuario com mais emprestimos: %d \n", livro);
+    printf("ID do livro com mais empréstimos: %d \n", livro);
     return 1;
 
 }

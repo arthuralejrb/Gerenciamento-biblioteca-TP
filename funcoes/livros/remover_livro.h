@@ -36,12 +36,12 @@ int remover_livro(tBiblioteca *biblioteca, int posicao) {
             
             return 1;    
         
-        }else {
-     
-            printf("Livro removido com sucesso! \n");
-            return 1;
-     
         }
+
+        printf("Livro removido com sucesso! \n");
+        return 1;
+     
+        
     }
 
 }

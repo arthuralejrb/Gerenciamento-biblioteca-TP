@@ -38,8 +38,7 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 limpar_tela();
                 adicionar_livro(biblioteca);
 
-                //incrementa a contadora de livros e aumenta o espaço alocado pelo vetor de livros
-
+                //escreve o vetor de livros em um arquivo .csv
                 escrever_livros("livros.csv", biblioteca);
 
             break;
@@ -50,9 +49,10 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 
                 //limpa a tela e lê a string busca 
                 limpar_tela();
-
-                printf("Digite o título do livro ou nome do autor: \n");
                 limpar_buffer();
+
+                
+                printf("Digite o título do livro ou nome do autor: \n");
                 fgets(busca, sizeof(busca), stdin);
                 remover_linha(busca);
 
@@ -81,7 +81,7 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 //usa o id do livro para encontrar sua posição no vetor de livros
                 posicao = buscar_idl(biblioteca, busca_id);
 
-                //atualiza os dados do livro
+                //atualiza os dados do livro e escreve o vetor de livros no arquivo .csv
                 atualizar_livro(biblioteca, posicao);
                 escrever_livros("livros.csv", biblioteca);
 
@@ -101,10 +101,9 @@ void gerenciamento_livros(tBiblioteca *biblioteca) {
                 //remove o livro do vetor de livros
                 remover_livro(biblioteca, posicao);
 
-                //decrementa o total de livros armazenados e diminui o espaço alocado no vetor de livros
-                biblioteca->total_livros--;
+                //escreve o vetor de livros no arquivo .csv    
+                biblioteca->total_livros--;            
                 biblioteca->livros = (tLivro *)realloc(biblioteca->livros, (biblioteca->total_livros + 1)*sizeof(tLivro));
-                
                 escrever_livros("livros.csv", biblioteca);
             
             break;
